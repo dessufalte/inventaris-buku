@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventaris Web</title>
+    <link rel="stylesheet" href="../static/style/output.css" />
+    <link rel="shortcut icon" href="../static/icon/favicon.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body class=" bg-gray-100 md:flex">
+    <div
+      id="sidebar"
+      class="sidebar h-full bg-white flex flex-col w-56 transition-all duration-500 ease-in-out absolute"
+    >
+    <div class="p-4">
+      <ul class="fa-sm content-center w-fit">
+        <li class="sidebarToggle menubtn w-fit" id="sidebarToggle">
+          <i class="fa-solid fa-bars self-center"></i>
+        </li>
+      </ul>
+    </div>
+      <div
+        class="p-4 justify-center font-bold flex flex-row gap-4 cursor-default"
+      >
+        <img src="../static/icon/favicon.png" class="w-10 h-10" alt="" />
+        <div class="">
+          <h1>Inventaris Web</h1>
+          <h2 class="text-blue-400">Admin</h2>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <ul class="menu grid items-center font-semibold">
+          <li onclick="(window.location.href = 'inventory.html')">
+            <i class="fa-solid fa-warehouse"></i>
+            <p>Inventaris</p>
+          </li>
+          <li onclick="(window.location.href = 'loan.html')">
+            <i class="fa-solid fa-box"></i>
+            <p>Peminjaman</p>
+          </li>
+          <li onclick="(window.location.href = 'user.html')">
+            <i class="fa-solid fa-user"></i>
+            <p>Pengguna</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <main
+      id="main"
+      class="flex-1 transition-all ease-in-out duration-300"
+    >
+      <nav class="flex flex-row justify-between w-full h-16 p-2">
+        <div class="flex flex-row gap-2">
+          <ul class="fa-sm content-center">
+            <li class="menubtn sidebarToggle" id="sidebarToggle">
+              <i class="fa-solid fa-bars self-center"></i>
+            </li>
+          </ul>
+          <input
+            type="text"
+            class="outline-0 h-7 self-center px-2 rounded-md border-gray-300 border-[1px] transition-transform"
+            name=""
+            placeholder="Pencarian"
+            id=""
+          />
+        </div>
+        <div class="content-center">
+          <ul class="flex flex-row text-xs fa-sm gap-2">
+            <li class="menubtn"><i class="fa-solid fa-house"></i></li>
+            <li class="menubtn" onclick="(window.location.href = '../auth/login.html')"><i class="fa-solid fa-key"></i></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="">
+      <div
+        class="content grid md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1 gap-3 p-2 h-4/5 "
+      >
+        <div class="popular panel-content h-full">
+          <h1 class="font-bold">Produk Populer</h1>
+          <hr />
+            <div class="p-2 h-[480px] overflow-y-scroll" id="listOfBook">
+            </div>
+        </div>
+        <div class="flex flex-col gap-2 h-full">
+          <div class="rent panel-content w-full">
+            <h1 class="font-bold">Peminjaman</h1>
+          <hr />
+          <div class="pt-2 w-full">
+            <div class="p-2">
+              <p class="text-gray-600 translate-y-1">Total peminjaman</p>
+              <div
+                class="flex flex-row justify-between pr-2 items-center content-center"
+              >
+                <p class="font-bold text-xl">12 Buku</p>
+                <select
+                  name=""
+                  id="selectbox"
+                  class="border-[1px] text-xs p-1 rounded-md border-blue-300 focus:outline-none"
+                >
+                  <option value="hr">Harian</option>
+                  <option value="mg" selected>Mingguan</option>
+                  <option value="bl">Bulanan</option>
+                  <option value="th">Tahunan</option>
+                </select>
+              </div>
+            </div>
+            <canvas class="max-h-[20rem] p-2" id="grafik"></canvas>
+
+            <div class=""></div>
+            <hr />
+            <div class="p-2 flex flex-row justify-between">
+              <p class="self-center font-semibold text-gray-500 text-xs">Peminjaman terbesar = Kamis (30)</p>
+                
+              </p>
+              <p class="self-center font-semibold text-gray-500 text-xs">
+                7 minggu
+              </p>
+            </div>
+          </div>
+
+          
+          </div>
+          <div class="rent panel-content">
+            <h1 class="font-bold">Kontributor</h1>
+            <hr />
+            <div class="grid grid-cols-3 text-center p-8">
+              <div class="">
+                <i class="fab fa-facebook text-6xl"></i>
+                #3
+              </div>
+              <div class="">
+                <i class="fab fa-twitter text-8xl"></i>
+                #1
+              </div>
+              <div class="">
+                <i class="fab fa-instagram text-6xl"></i>
+                #2
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../static/script/script.js"></script>
+    <script src="../fetcher/api-fetcher.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../fetcher/grafik.js"></script>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventaris Web</title>
+    <link rel="stylesheet" href="../static/style/output.css" />
+    <link
+      rel="shortcut icon"
+      href="../static/icon/favicon.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 md:flex">
+    <div
+      id="sidebar"
+      class="sidebar h-full bg-white flex flex-col w-56 transition-all duration-500 ease-in-out fixed z-50"
+    >
+      <div class="p-4">
+        <ul class="fa-sm content-center w-fit">
+          <li class="sidebarToggle menubtn-u w-fit" id="sidebarToggle">
+            <i class="fa-solid fa-bars self-center"></i>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="p-4 justify-center font-bold flex flex-row gap-4 cursor-default"
+      >
+        <img src="../static/icon/favicon.png" class="w-10 h-10" alt="" />
+        <div class="">
+          <h1>Inventaris Web</h1>
+          <h2 class="text-green-400">User</h2>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <ul class="menu-u grid items-center font-semibold">
+          <li onclick="(window.location.href = 'index.html')">
+            <i class="fa-solid fa-earth"></i>
+            <p>Explorasi</p>
+          </li>
+          <li
+            class="selectedli-u"
+            onclick="(window.location.href = 'loaning.html')"
+          >
+            <i class="fa-solid fa-book-journal-whills"></i>
+            <p>Peminjaman</p>
+          </li>
+          <li onclick="(window.location.href = 'about.html')">
+            <i class="fa-solid fa-box"></i>
+            <p>Tentang</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <main id="main" class="flex-1 transition-all ease-in-out duration-300">
+      <nav
+        class="flex flex-row fixed z-40 justify-between bg-gray-200 w-full h-16 p-2"
+      >
+        <div class="flex flex-row gap-2">
+          <ul class="fa-sm content-center">
+            <li class="sidebarToggle menubtn-u" id="sidebarToggle">
+              <i class="fa-solid fa-bars self-center"></i>
+            </li>
+          </ul>
+          
+        </div>
+        <div class="content-center">
+          <ul class="flex flex-row text-xs fa-sm gap-2">
+            <li class="menubtn-u"><i class="fa-solid fa-house"></i></li>
+            <li
+              class="menubtn-u"
+              onclick="(window.location.href = '../auth/login.html')"
+            >
+              <i class="fa-solid fa-key"></i>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container mx-auto mt-20 p-4">
+        <h2 class="text-2xl font-bold mb-4">Peminjaman</h2>
+
+        <div id="borrowedBooksList" class="space-y-4"></div>
+      </div>
+
+      <script type="text/template" id="bookItemTemplate">
+        <div class="border p-4 rounded-lg shadow-md flex justify-between items-center">
+          <div class="flex items-center">
+            <img src="{{cover}}" alt="" class="w-16 h-24 mr-4 rounded-lg">
+            <div>
+              <p class="font-semibold text-lg">{{title}}</p>
+              <p class="text-gray-500">Tanggal Pinjam: {{borrowDate}}</p>
+              <p class="text-gray-500">Batas Pengembalian: {{returnDate}}</p>
+              <p class="text-gray-500">Tenggat: <span class="{{statusClass}}">{{status}}</span></p>
+            </div>
+          </div>
+
+          <div class="flex space-x-2 items-center">
+            <button class="menubtn-u baca-btn" data-id="{{bookId}}">
+              Baca
+            </button>
+            <button class="menubtn-u kembalikan-btn" data-id="{{bookId}}">
+              Kembalikan
+            </button>
+          </div>
+        </div>
+      </script>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../static/script/script.js"></script>
+    <script src="user-loan.js"></script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    @apply text-sm;
+}
+.menu li{
+    @apply py-2;
+    @apply items-center;
+    @apply justify-center;
+    @apply hover:bg-blue-200;
+    @apply px-4;
+    @apply cursor-pointer;
+    @apply grid grid-cols-5;
+    @apply transition-colors ease-in-out;
+}
+.menu-u li{
+    @apply py-2;
+    @apply items-center;
+    @apply justify-center;
+    @apply hover:bg-green-200;
+    @apply px-4;
+    @apply cursor-pointer;
+    @apply grid grid-cols-5;
+    @apply transition-colors ease-in-out;
+}
+.menu li p{
+    @apply col-span-4
+}
+.menubtn{
+    @apply content-center;
+    @apply border-[1px];
+    @apply h-7;
+    @apply items-center;
+    @apply rounded-md;
+    @apply border-blue-400;
+    @apply px-2 cursor-pointer hover:bg-blue-500 hover:text-white transition-all ease-in-out duration-100;
+}
+.menubtn-u{
+    @apply content-center;
+    @apply border-[1px];
+    @apply h-7;
+    @apply items-center;
+    @apply rounded-md;
+    @apply border-green-400;
+    @apply px-2 cursor-pointer hover:bg-green-300 hover:text-white transition-all ease-in-out duration-100;
+}
+.hide{
+    left: -20rem;
+}
+.selectedli{
+    @apply bg-blue-300;
+}
+.selectedli-u{
+    @apply bg-green-300;
+}
+.panel-content{
+    @apply bg-white shadow-md rounded-md;
+}
+.panel-content h1{
+    @apply p-2
+}

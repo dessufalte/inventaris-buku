@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../static/style/output.css" />
+    <link
+      rel="shortcut icon"
+      href="../static/icon/favicon.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <main
+      class="h-screen w-screen flex flex-col items-center justify-center bg-slate-100"
+    >
+      <div
+        class="bg-white w-fit shadow-md rounded-md flex-row flex gap-2 mx-10"
+      >
+        <div class="p-6">
+          <h1 class="text-xl font-bold">Sign Up</h1>
+          <p class="text-gray-400">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
+            minus ullam placeat,
+          </p>
+          <hr />
+          <form
+            class="mt-2 pb-2 flex flex-col justify-between h-full"
+            action=""
+            method="post"
+          >
+            <div class="flex flex-col gap-2">
+              <p class="font-semibold">Username :</p>
+              <input
+                class="bg-slate-200 p-2 w-full outline-none"
+                type="text"
+                name=""
+                id=""
+                required
+                placeholder="Masukan username"
+              />
+              <p class="font-semibold">Email :</p>
+              <input
+                class="bg-slate-200 p-2 w-full outline-none"
+                type="email"
+                name=""
+                id=""
+                placeholder="Masukan Email"
+                required
+              />
+              <p class="font-semibold">Password :</p>
+              <input
+                class="bg-slate-200 p-2 w-full outline-none"
+                type="password"
+                name=""
+                id=""
+                required
+                placeholder="Masukan password"
+              />
+            </div>
+            <input
+              type="submit"
+              value="Sign In"
+              class="p-2 hover:bg-blue-500 cursor-pointer bg-blue-300 text-white"
+            />
+            <div
+              class="text-center -translate-y-3 text-xs flex flex-row justify-center gap-4 text-blue-400"
+            >
+              <p class="cursor-pointer"><a href="login.html">Sign In</a></p>
+              |
+              <p class="cursor-pointer">
+                <a href="../admin/index.html">Back Home ( Admin )</a>
+              </p>|
+              <p class="cursor-pointer">
+                <a href="../user/index.html">Back Home ( User )</a>
+              </p>
+            </div>
+          </form>
+        </div>
+        <div class="">
+          <img
+            class="h-full"
+            src="https://fastly.4sqi.net/img/general/600x600/46148010_SvGDumcMg_4-8uL5qatjnXQwIyEARL-121PwmpZfjaI.jpg"
+            alt=""
+          />
+        </div>
+      </div>
+    </main>
+    <script src="signup-user.js"></script>
+  </body>
+</html>

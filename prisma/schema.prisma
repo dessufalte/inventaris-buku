@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum LoanStatus {
+  DIPINJAM     // Buku sedang dipinjam
+  DIKEMBALIKAN // Buku telah dikembalikan
+  TERLAMBAT    // Buku terlambat dikembalikan
+}
+
+model User {
+  user_id    Int          @id @default(autoincrement()) // Primary key untuk pengguna
+  username String  @unique        // Nama pengguna
+  password   String       // Kata sandi pengguna
+  peran      String       // Peran pengguna (contoh: admin, anggota)
+  email      String       // Email pengguna
+  peminjaman Peminjaman[] // Relasi ke model Peminjaman (one-to-many)
+}
+
+model Buku {
+  buku_id          Int          @id @default(autoincrement()) // Primary key untuk buku
+  title            String       // Judul buku
+  rating           Int          // Rating buku
+  publisher        String       // Penerbit buku
+  author           String       // Penulis buku
+  category         String       // Kategori buku
+  description      String       // Deskripsi buku
+  stock            Int          @default(0) // Jumlah stok buku
+  ISBN             String       // ISBN buku
+  publication_date DateTime     // Tanggal penerbitan buku
+  peminjaman       Peminjaman[] // Relasi ke model Peminjaman (one-to-many)
+}
+
+model Peminjaman {
+  id_peminjaman       Int        @id @default(autoincrement()) // Primary key untuk peminjaman
+  user                User       @relation(fields: [user_id], references: [user_id]) // Relasi ke User
+  user_id             Int        // Foreign key ke model User
+  buku                Buku       @relation(fields: [buku_id], references: [buku_id]) // Relasi ke Buku
+  buku_id             Int        // Foreign key ke model Buku
+  tanggal_pinjam      DateTime   @default(now()) // Tanggal peminjaman buku
+  tanggal_dikembalikan DateTime? // Tanggal buku dikembalikan (opsional)
+  tanggal_kembali     DateTime   // Batas waktu pengembalian buku
+  status              LoanStatus // Status peminjaman (DIPINJAM, DIKEMBALIKAN, TERLAMBAT)
+}

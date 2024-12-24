@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventaris Web</title>
+    <link rel="stylesheet" href="../static/style/output.css" />
+    <link
+      rel="shortcut icon"
+      href="../static/icon/favicon.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray-100 md:flex">
+    <div
+      id="sidebar"
+      class="sidebar h-full bg-white flex flex-col w-56 transition-all duration-500 ease-in-out absolute"
+    >
+      <div class="p-4">
+        <ul class="fa-sm content-center w-fit">
+          <li class="sidebarToggle menubtn w-fit" id="sidebarToggle">
+            <i class="fa-solid fa-bars self-center"></i>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="p-4 justify-center font-bold flex flex-row gap-4 cursor-default"
+      >
+        <img src="../static/icon/favicon.png" class="w-10 h-10" alt="" />
+        <div class="">
+          <h1>Inventaris Web</h1>
+          <h2 class="text-blue-400">Admin</h2>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <ul class="menu grid items-center font-semibold">
+          <li
+            class="selectedli"
+            onclick="(window.location.href = 'index.html')"
+          >
+            <i class="fa-solid fa-warehouse"></i>
+            <p>Inventaris</p>
+          </li>
+          <li onclick="(window.location.href = 'loan.html')">
+            <i class="fa-solid fa-box"></i>
+            <p>Peminjaman</p>
+          </li>
+          <li onclick="(window.location.href = 'user.html')">
+            <i class="fa-solid fa-user"></i>
+            <p>Pengguna</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <main id="main" class="flex-1 transition-all ease-in-out duration-300">
+      <nav class="flex flex-row justify-between w-full h-16 p-2">
+        <div class="flex flex-row gap-2">
+          <ul class="fa-sm content-center">
+            <li class="menubtn sidebarToggle" id="sidebarToggle">
+              <i class="fa-solid fa-bars self-center"></i>
+            </li>
+          </ul>
+       
+        </div>
+        <div class="content-center">
+          <ul class="flex flex-row text-xs fa-sm gap-2">
+            <li class="menubtn"><i class="fa-solid fa-house"></i></li>
+            <li
+              class="menubtn"
+              onclick="(window.location.href = '../auth/login.html')"
+            >
+              <i class="fa-solid fa-key"></i>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div id="addBookModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+        <div
+          class="flex items-center justify-center min-h-screen px-4 text-center"
+        >
+          <div class="fixed inset-0 bg-gray-500 bg-opacity-75"></div>
+          <div
+            class="inline-block bg-white rounded-lg text-left overflow-hidden shadow-xl transform sm:max-w-lg w-full p-4"
+          >
+            <div class="flex justify-between items-center border-b-2 pb-2">
+              <h2 class="text-xl font-bold">Tambah Buku Baru</h2>
+              <button
+                class="text-gray-600 hover:text-gray-800"
+                id="closeModalButton"
+              >
+                &times;
+              </button>
+            </div>
+            <form id="addBookForm">
+              <div class="mt-4">
+                <label for="bookTitle" class="block font-medium"
+                  >Judul Buku</label
+                >
+                <input
+                  type="text"
+                  id="bookTitle"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan judul buku"
+                />
+
+                <label for="bookCategory" class="block font-medium"
+                  >Kategori</label
+                >
+                <select
+                  id="bookCategory"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                >
+                  <option value="novel">Novel</option>
+                  <option value="komik">Komik</option>
+                  <option value="nonfiksi">Non-Fiksi</option>
+                  <option value="pendidikan">Pendidikan</option>
+                </select>
+
+                <label for="bookAuthor" class="block font-medium"
+                  >Penulis</label
+                >
+                <input
+                  type="text"
+                  id="bookAuthor"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan nama penulis"
+                />
+
+                <label for="bookPublisher" class="block font-medium"
+                  >Penerbit</label
+                >
+                <input
+                  type="text"
+                  id="bookPublisher"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan nama penerbit"
+                />
+
+                <label for="bookDescription" class="block font-medium"
+                  >Deskripsi</label
+                >
+                <textarea
+                  id="bookDescription"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan deskripsi buku"
+                ></textarea>
+
+                <label for="bookStock" class="block font-medium">Stok</label>
+                <input
+                  type="number"
+                  id="bookStock"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan jumlah stok"
+                />
+
+                <label for="bookRating" class="block font-medium">Rating</label>
+                <input
+                  type="number"
+                  step="0.1"
+                  id="bookRating"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan rating buku (0-5)"
+                />
+
+                <label for="bookISBN" class="block font-medium">ISBN</label>
+                <input
+                  type="text"
+                  id="bookISBN"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan ISBN buku"
+                />
+
+                <label for="publicationDate" class="block font-medium"
+                  >Tanggal Terbit</label
+                >
+                <input
+                  type="date"
+                  id="publicationDate"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                />
+              </div>
+            </form>
+            <div class="flex justify-end mt-4">
+              <button
+                class="bg-gray-500 text-white p-2 rounded-md mr-2"
+                id="cancelButton"
+              >
+                Batal
+              </button>
+              <button
+                class="bg-blue-500 text-white p-2 rounded-md"
+                id="saveBookButton"
+              >
+                Simpan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        id="detailModal"
+        class="fixed hidden p-4 inset-0 bg-black bg-opacity-50 justify-center items-center z-50"
+      >
+        <div class="bg-white p-6 rounded-lg shadow-lg w-1/3 relative">
+          <button
+            class="top-2 right-2 text-gray-500 hover:text-gray-800 text-lg"
+            onclick="closeModal()"
+          >
+            &times;
+          </button>
+          <div id="detailModalContent" class="text-gray-700">
+            <!-- Detail buku akan diisi di sini melalui JavaScript -->
+          </div>
+        </div>
+      </div>
+      <div id="editBookModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+        <div
+          class="flex items-center justify-center min-h-screen px-4 text-center"
+        >
+          <div class="fixed inset-0 bg-gray-500 bg-opacity-75"></div>
+          <div
+            class="inline-block bg-white rounded-lg text-left overflow-hidden shadow-xl transform sm:max-w-lg w-full p-4"
+          >
+            <div class="flex justify-between items-center border-b-2 pb-2">
+              <h2 class="text-xl font-bold">Edit Buku</h2>
+              <button
+                class="text-gray-600 hover:text-gray-800"
+                id="closeEditModalButton"
+              >
+                &times;
+              </button>
+            </div>
+            <form id="editBookForm">
+              <div class="mt-4">
+                <label for="editBookTitle" class="block font-medium"
+                  >Judul Buku</label
+                >
+                <input
+                  type="text"
+                  id="editBookTitle"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan judul buku"
+                />
+
+                <label for="editBookCategory" class="block font-medium"
+                  >Kategori</label
+                >
+                <select
+                  id="editBookCategory"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                >
+                  <option value="novel">Novel</option>
+                  <option value="komik">Komik</option>
+                  <option value="nonfiksi">Non-Fiksi</option>
+                  <option value="pendidikan">Pendidikan</option>
+                </select>
+
+                <label for="editBookAuthor" class="block font-medium"
+                  >Penulis</label
+                >
+                <input
+                  type="text"
+                  id="editBookAuthor"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan nama penulis"
+                />
+
+                <label for="editBookPublisher" class="block font-medium"
+                  >Penerbit</label
+                >
+                <input
+                  type="text"
+                  id="editBookPublisher"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan nama penerbit"
+                />
+
+                <label for="editBookDescription" class="block font-medium"
+                  >Deskripsi</label
+                >
+                <textarea
+                  id="editBookDescription"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan deskripsi buku"
+                ></textarea>
+
+                <label for="editBookStock" class="block font-medium"
+                  >Stok</label
+                >
+                <input
+                  type="number"
+                  id="editBookStock"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan jumlah stok"
+                />
+
+                <label for="editBookRating" class="block font-medium"
+                  >Rating</label
+                >
+                <input
+                  type="number"
+                  step="0.1"
+                  id="editBookRating"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan rating buku (0-5)"
+                />
+
+                <label for="editBookISBN" class="block font-medium">ISBN</label>
+                <input
+                  type="text"
+                  id="editBookISBN"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                  placeholder="Masukkan ISBN buku"
+                />
+
+                <label for="editPublicationDate" class="block font-medium"
+                  >Tanggal Terbit</label
+                >
+                <input
+                  type="date"
+                  id="editPublicationDate"
+                  class="border-2 w-full p-2 rounded-md mb-4"
+                />
+                <input type="hidden" name="buku_id" id="buku_id">
+              </div>
+            </form>
+            <div class="flex justify-end mt-4">
+              <button
+                class="bg-gray-500 text-white p-2 rounded-md mr-2"
+                id="cancelEditButton"
+              >
+                Batal
+              </button>
+              <button
+                class="bg-blue-500 text-white p-2 rounded-md"
+                id="saveEditBookButton"
+              >
+                Simpan Perubahan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inventory panel-content m-2 h-full">
+        <h1 class="font-bold">Inventaris Buku</h1>
+        <hr />
+        <div class="p-2">
+          <div class="flex flex-row justify-between items-center">
+            <p class="font-bold text-xl" id="countbook">Total Buku: 1200</p>
+            <button class="menubtn" id="addBookButton">Tambah Buku</button>
+          </div>
+        </div>
+
+        <div class="p-2 flex flex-row justify-between items-center">
+          <input
+            type="text"
+            class="border-2 p-1 rounded-md w-full mr-2"
+            placeholder="Cari buku..."
+            id="searchBookInput"
+          />
+          <select id="filterByCategory" class="border-2 p-1 rounded-md">
+            <option value="">Kategori</option>
+            <option value="novel">Novel</option>
+            <option value="komik">Komik</option>
+            <option value="nonfiksi">Non-Fiksi</option>
+            <option value="pendidikan">Pendidikan</option>
+          </select>
+        </div>
+
+        <div class="p-2 h-[480px] overflow-y-scroll" id="bookList">
+          <div class="flex flex-row justify-between border-b-2 p-2">
+            <div>
+              <p class="font-semibold">Judul: Bumi Manusia</p>
+              <p class="text-gray-600">Kategori: Novel</p>
+            </div>
+            <div class="flex flex-row gap-2">
+              <button class="menubtn text-xs">Edit</button>
+              <button class="menubtn text-xs">Hapus</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../static/script/script.js"></script>
+    <script src="../fetcher/api-fetcher.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="api/add-book.js"></script>
+    <script src="api/edit-book.js"></script>
+    <script src="api/delete-book.js"></script>
+    <script src="open-add-book.js"></script>
+    <script src="api/search-book.js"></script>
+    <script src="api/fetch-book.js"></script>
+  </body>
+</html>
